@@ -1,0 +1,17 @@
+aside {
+    display: inline;
+    float: left;
+    width: 20%;
+}
+
+main {
+    display: inline;
+    float: left;
+    width: 70%;
+}
+
+img {
+    padding-bottom: 2px;
+}
+
+/* TODO: Media query for aside width; top & bottom margins on 5-day cards */

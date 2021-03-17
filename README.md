@@ -16,16 +16,16 @@ THEN I am again presented with current and future conditions for that city
 
 ### TODOs
 
-- Bootstrap Layout
+- Connect jQuery
 - Connect search input to query parameter
-    - Hook up JQuery
-- Connect query outputs to HTML
-    - Need Moment.js? Other way to deal with Unix dates?
+- Connect query outputs to DOM
+    - Need to convert Unix dates
     - Conditional styling on UV Index
 - Put past searches in Local Storage and in DOM as buttons
     - Event listeners on all - click calls the getWeather function
-- Slack / polish!
-    - JQuery UI?
+- Slack Time / NTH
+    - Responsiveness - put breakpoints into Bootstrap
+    - Play with Bootswatch
 
 ### Resources
 
