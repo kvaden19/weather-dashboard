@@ -16,20 +16,13 @@ THEN I am again presented with current and future conditions for that city
 
 ### TODOs
 
-- Convert icon IDs to img src
-- Convert Unix dates
-- Conditional styling on UV Index
-- Put past searches in DOM as buttons
-- Past searches array needs to load to / from Local Storage
-- Event listeners on all past searches - click calls the getWeather function
+- Push any search input onto an array that loads to / from Local Storage
+- Loop through array and display elements in aside
+- Put event listeners on all past searches - click calls the getWeather function passing in that city
 - Add media query for aside width and top / bottom margins on 5-day blocks
-- Error handling - if user enters a nonsense city display an error
+- Error handling - if user enters a nonsense city display an error and leave cards blank
 
 ### Resources
 
 https://openweathermap.org/current
 https://openweathermap.org/api/one-call-api
-
-Icons:
-http://openweathermap.org/img/wn/10d@2x.png
-Put 3 digit icon id after wn/ and before @

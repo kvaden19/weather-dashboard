@@ -14,4 +14,9 @@ img {
     padding-bottom: 2px;
 }
 
+#currentUV {
+    padding: 5px;
+    border-radius: 5px;
+}
+
 /* TODO: Media query for aside width; top & bottom margins on 5-day cards */
