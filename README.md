@@ -16,13 +16,14 @@ THEN I am again presented with current and future conditions for that city
 
 ### TODOs
 
-- Connect query outputs to DOM
+- Convert icon IDs to img src
 - Convert Unix dates
 - Conditional styling on UV Index
 - Put past searches in DOM as buttons
 - Past searches array needs to load to / from Local Storage
 - Event listeners on all past searches - click calls the getWeather function
 - Add media query for aside width and top / bottom margins on 5-day blocks
+- Error handling - if user enters a nonsense city display an error
 
 ### Resources
 
