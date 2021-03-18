@@ -56,10 +56,13 @@ function getOneCall(lat, lon) {
     })
     
     .then(function (data) {
-      // Display UV in the Current Weather Section of the page
+        // Display UV in the Current Weather Section of the page
         currentUV.text('UV Index: ' + data.current.uvi);
 
-      // Create five HTML "cards" and use them to display API response for 5-Day Forecast
+        // Remove any existing Five Day Forecast cards before displaying new ones
+        $(".fiveDayCard").remove();
+
+        // Create five HTML "cards" and use them to display API response for 5-Day Forecast
         for (i=1; i<6; i++) {
             var fiveDayDate = data.daily[i].dt;
             var fiveDayIcon = data.daily[i].weather[0].icon;
@@ -67,12 +70,12 @@ function getOneCall(lat, lon) {
             var fiveDayHumidity = data.daily[i].humidity;
 
             var fiveDayCardHTML = `
-            <div class="col">
+            <div class="col fiveDayCard">
             <div class="card me-2 bg-primary">
               <div class="card-body">
                 <h6>${fiveDayDate}</h6>
                 <img src="${fiveDayIcon}">
-                <p>Temperature: ${fiveDayTemp} °F</p>
+                <p>Temp: ${fiveDayTemp} °F</p>
                 <p>Humidity: ${fiveDayHumidity}%</p>
               </div>
             </div>
