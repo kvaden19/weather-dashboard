@@ -16,23 +16,18 @@ THEN I am again presented with current and future conditions for that city
 
 ### TODOs
 
-- Connect jQuery
-- Connect search input to query parameter
 - Connect query outputs to DOM
-    - Need to convert Unix dates
-    - Conditional styling on UV Index
-- Put past searches in Local Storage and in DOM as buttons
-    - Event listeners on all - click calls the getWeather function
-- Slack Time / NTH
-    - Responsiveness - put breakpoints into Bootstrap
-    - Play with Bootswatch
+- Convert Unix dates
+- Conditional styling on UV Index
+- Put past searches in DOM as buttons
+- Past searches array needs to load to / from Local Storage
+- Event listeners on all past searches - click calls the getWeather function
+- Add media query for aside width and top / bottom margins on 5-day blocks
 
 ### Resources
 
 https://openweathermap.org/current
 https://openweathermap.org/api/one-call-api
-
-API key: 7f3c1e71f6bbfacc0861617dc3851787
 
 Icons:
 http://openweathermap.org/img/wn/10d@2x.png

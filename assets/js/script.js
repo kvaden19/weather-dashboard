@@ -1,14 +1,26 @@
+// DOM variables
+var searchForm = $("#searchForm");
 var apiKey = '7f3c1e71f6bbfacc0861617dc3851787';
-var city = 'Pittsburgh';
 
+function handleCitySearch(event) {
+  event.preventDefault();
 
-function getCurrentWeather() {
+  // get the search city from the search box input
+  var searchCity = $("#searchCity").val();
+
+  // pass searchCity to getCurrentWeather function
+  getCurrentWeather(searchCity);
+}
+
+function getCurrentWeather(city) {
+    // call the Open Weather "Current" API with the API key and the user's input search city
     var requestUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
   
     fetch(requestUrl)
       .then(function (response) {
         return response.json();
       })
+      // log the response
       .then(function (data) {
         console.log('Current Weather');
         console.log('Date: ' + data.dt);
@@ -19,6 +31,7 @@ function getCurrentWeather() {
         console.log('Windspeed: ' + data.wind.speed);
         var lat = data.coord.lat;
         var lon = data.coord.lon;
+        // call the Open Weather "One Call" API with the city's lat & long, because One Call won't accept city name
         getOneCall(lat, lon);
       })
 }
@@ -42,4 +55,4 @@ function getOneCall(lat, lon) {
     })
 }
 
-getCurrentWeather();
+searchForm.on("submit", handleCitySearch);
