@@ -1,4 +1,5 @@
 // Variable Declarations
+// var sidebar = $('#sidebar');
 var searchForm = $("#searchForm");
 var currentCity = $("#city");
 var currentDate = $("#today");
@@ -41,7 +42,6 @@ function handleCitySearch(event) {
   var searchCity = $("#searchCity").val();
 
   // Pass searchCity to getCurrentWeather and trackSearches functions
-  trackSearches(searchCity);
   getCurrentWeather(searchCity);
 }
 
@@ -56,18 +56,38 @@ function getCurrentWeather(city) {
 
       // Display API response in the Current Weather section of the page
       .then(function (data) {
-        currentCity.text(data.name);
-        var iconID = data.weather[0].icon;
-        currentIcon.attr("src", `https://openweathermap.org/img/wn/${iconID}@2x.png`);
-        currentTemp.text('Temperature: ' + data.main.temp + ' °F');
-        currentHumidity.text('Humidity: ' + data.main.humidity + '%');
-        currentWind.text('Wind Speed: ' + data.wind.speed + ' mph');
+        if (data.cod === 200) {
+          currentCity.text(data.name);
+          var iconID = data.weather[0].icon;
+          currentIcon.attr("src", `https://openweathermap.org/img/wn/${iconID}@2x.png`);
+          currentTemp.text('Temperature: ' + data.main.temp + ' °F');
+          currentHumidity.text('Humidity: ' + data.main.humidity + '%');
+          currentWind.text('Wind Speed: ' + data.wind.speed + ' mph');
 
-        var lat = data.coord.lat;
-        var lon = data.coord.lon;
+          var lat = data.coord.lat;
+          var lon = data.coord.lon;
 
-        // Call Open Weather Map's "One Call" API using the search city's lat & long, because One Call won't accept city name
-        getOneCall(lat, lon);
+          // Call Open Weather Map's "One Call" API using the search city's lat & long, because One Call won't accept city name
+          getOneCall(lat, lon);
+          trackSearches(city);
+        }
+        else { // If API cannot find user-input city, display an error message and leave weather content blank
+          currentCity.text('Search for a City');
+          currentIcon.attr("src", "");
+          currentTemp.text("Temperature: ");
+          currentHumidity.text("Humidity: ");
+          currentWind.text("Wind Speed: ");
+          currentUV.text("");
+          currentUV.css("background", "");
+          $(".fiveDayCard").remove();
+
+          var alert = `<div class="alert alert-danger" role="alert">City not found!</div>`;
+          pastSearchList.prepend(alert);
+
+          window.setTimeout(function() {
+            $(".alert").remove()
+          }, 2000);
+        }
       })
 }
 
@@ -149,3 +169,9 @@ function trackSearches(city) {
 
 // Event Listeners
 searchForm.on("submit", handleCitySearch);
+
+pastSearchList.on("click", "button", function(e) {
+    var target = $(e.target);
+    var searchAgain = target.text();
+    getCurrentWeather(searchAgain);
+  })

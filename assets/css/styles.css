@@ -14,13 +14,22 @@ img {
     padding-bottom: 2px;
 }
 
-.btn {
-    float: left;
-}
-
 #currentUV {
     padding: 5px;
     border-radius: 5px;
 }
 
-/* TODO: Media query for aside width; top & bottom margins on 5-day cards */
+@media screen and (max-width: 576px) {
+    aside {
+        width: 90%
+    }
+
+    main {
+        width: 90%
+    }
+
+    .fiveDayCard {
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+  }

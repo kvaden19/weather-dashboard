@@ -14,13 +14,6 @@ THEN I am presented with a 5-day forecast that displays the date, an icon repres
 WHEN I click on a city in the search history
 THEN I am again presented with current and future conditions for that city
 
-### TODOs
-
-- Style past searches in aside
-- Put event listeners on all past searches - click calls the getWeather function passing in that city
-- Add media query for aside width and top / bottom margins on 5-day blocks
-- Error handling - if user enters a nonsense city display an error and leave cards blank
-
 ### Resources
 
 https://openweathermap.org/current
