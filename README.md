@@ -16,8 +16,7 @@ THEN I am again presented with current and future conditions for that city
 
 ### TODOs
 
-- Push any search input onto an array that loads to / from Local Storage
-- Loop through array and display elements in aside
+- Style past searches in aside
 - Put event listeners on all past searches - click calls the getWeather function passing in that city
 - Add media query for aside width and top / bottom margins on 5-day blocks
 - Error handling - if user enters a nonsense city display an error and leave cards blank

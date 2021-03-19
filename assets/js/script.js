@@ -8,21 +8,40 @@ var currentHumidity = $("#currentHumidity");
 var currentWind = $("#currentWind");
 var currentUV = $("#currentUV");
 var fiveDayContainer = $("#fiveDayContainer");
+var pastSearchList = $("#pastSearchList");
 
 var apiKey = '7f3c1e71f6bbfacc0861617dc3851787';
 
+// Set the current date field
 const longDateFormat = {weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'};
 var dateFormatted = new Date().toLocaleDateString(undefined, longDateFormat);
 currentDate.text(dateFormatted);
 
+// Load past searches from Local Storage
+var pastSearches = JSON.parse(localStorage.getItem("pastSearches"));
+if (pastSearches === null) {
+  pastSearches = []
+}
+
+// Display each item in the pastSearches array as a button
+displayPastSearches();
+
 // Function Definitions
+function displayPastSearches() {
+  pastSearches.forEach(function(city) {
+    var pastHTML = `<button type="button" class="btn btn-success">${city}</button>`;
+    pastSearchList.append(pastHTML);
+  });
+}
+
 function handleCitySearch(event) {
   event.preventDefault();
 
   // Get user input from search box
   var searchCity = $("#searchCity").val();
 
-  // Pass searchCity to getCurrentWeather function
+  // Pass searchCity to getCurrentWeather and trackSearches functions
+  trackSearches(searchCity);
   getCurrentWeather(searchCity);
 }
 
@@ -39,7 +58,7 @@ function getCurrentWeather(city) {
       .then(function (data) {
         currentCity.text(data.name);
         var iconID = data.weather[0].icon;
-        currentIcon.attr("src", `http://openweathermap.org/img/wn/${iconID}@2x.png`);
+        currentIcon.attr("src", `https://openweathermap.org/img/wn/${iconID}@2x.png`);
         currentTemp.text('Temperature: ' + data.main.temp + ' °F');
         currentHumidity.text('Humidity: ' + data.main.humidity + '%');
         currentWind.text('Wind Speed: ' + data.wind.speed + ' mph');
@@ -98,17 +117,34 @@ function getOneCall(lat, lon) {
             <div class="card me-2 bg-primary">
               <div class="card-body">
                 <h6>${fiveDayDate}</h6>
-                <img src="http://openweathermap.org/img/wn/${fiveDayIcon}@2x.png">
+                <img src="https://openweathermap.org/img/wn/${fiveDayIcon}@2x.png">
                 <p>Temp: ${fiveDayTemp} °F</p>
                 <p>Humidity: ${fiveDayHumidity}%</p>
               </div>
             </div>
             </div>
-            `
+            `;
 
             fiveDayContainer.append(fiveDayCardHTML);
         }
     })
+}
+
+function trackSearches(city) {
+  // If the user-input city is not in the past searches array, add it to the beginning
+  if (!pastSearches.includes(city)) {
+    pastSearches.unshift(city);
+
+    // If the array gets longer than 10 cities, drop the last item
+    if (pastSearches.length > 10) {
+      pastSearches.pop();
+    }
+  }
+
+  // Display the past cities under the search box and send the updated array to local storage
+  $(".btn").remove();
+  displayPastSearches();
+  localStorage.setItem("pastSearches", JSON.stringify(pastSearches));
 }
 
 // Event Listeners

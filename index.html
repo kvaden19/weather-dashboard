@@ -14,7 +14,7 @@
   
   </head>
   <body class="bg-dark text-light">
-    <header class="m-3 text-center container">
+    <header class="my-3 text-center container">
       <div class="row">
         <div class="col-8 mx-auto">
           <h1 class="display-2">Weather Dashboard</h1>
@@ -25,13 +25,13 @@
     <aside class="ms-3 me-5">
       <div id="sidebar">
         <h4>Search for a City:</h4>
-        <form id="searchForm" class="input-group">
+        <form id="searchForm" class="input-group mb-3">
           <input type="search" id="searchCity" name="searchCity" class="form-control" placeholder="Search" />
           <span class="input-group-text"><i class="fas fa-search"></i></span>
         </form>
-        <ul>
+        <div id="pastSearchList" class="d-grid gap-3 col-6">
           <!-- Past searches go here -->
-        </ul>
+        </div>
       </div>
     </aside>
     <main class="mt-2 ms-2 me-4 mb-4">
