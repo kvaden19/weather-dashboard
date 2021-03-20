@@ -4,7 +4,7 @@
 
 AS A traveler
 I WANT to see the weather outlook for multiple cities
-SO THAT I can plan a trip accordingly
+SO THAT I can plan a trip accordingly.
 
 I've created a simple weather dashboard that allows a user to look up current and future weather conditions based on city name.
 
